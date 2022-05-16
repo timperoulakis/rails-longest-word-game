@@ -1,0 +1,18 @@
+<div class=container>
+  <h1>New game</h1>
+  <ul class="letters">
+    <% @letters.each do |letter| %>
+    <li class="letter"><%= letter %></li>
+    <% end%>
+  </ul>
+  <form action="/score" method="POST" data-turbo="false">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :letters, @letters %>
+    <%= hidden_field_tag :time, @time %>
+    <label class="form-label" for="word">What is the longest word you can find?</label>
+    <div class="input-group">
+      <input class="form-control" type="text" name="word" id="word" placeholder=<%= @letters.join('-')%>>
+      <input type="submit" class="btn btn-primary" value="Play">
+    </div>
+  </form>
+</div>
